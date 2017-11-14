@@ -35,18 +35,36 @@ public class Main {
         //sorting finalWords alphabetically
         Collections.sort(finalWords);
 
+        int counter = 1;
         //print out the final words and their count
         for (int i = 0; i < finalWords.size(); i++)
         {
+
             //since it's sorted can check for duplicates and only print unique words
             if ((i+1) < finalWords.size() && !finalWords.get(i).equals(finalWords.get(i+1)))
             {
-                outFile.println(finalWords.get(i));
+                outFile.println(finalWords.get(i) + finalWords.get(i).Gaps() + counter);
+                //some method that decides amount of gaps to print instead of single  " ";
+                counter = 1;
+            }
+            else
+            {
+                //increment counter if a word is a duplicate of previous one
+                counter += 1;
             }
 
         }
-
-
         outFile.close();
+    }
+
+    public String Gaps(String word)
+    {
+        final int MAX_SIZE = 30;
+        String spaces= "";
+        while(word.length < MAX_SIZE)
+        {
+            spaces += " ";
+        }
+        return spaces;
     }
 }
