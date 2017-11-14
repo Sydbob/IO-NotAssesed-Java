@@ -11,8 +11,10 @@ public class Main {
         Scanner in = new Scanner(new FileReader("D:\\Java Projects\\IO-NotAssesed-Java\\data.txt"));
         //Scanner in2 = new Scanner(new FileReader("D:\\Java Projects\\IO-NotAssesed-Java\\data.txt"));
         PrintWriter outFile = new PrintWriter("D:\\Java Projects\\IO-NotAssesed-Java\\dictionary.txt");
+
         String inputText = "";
         ArrayList<String> finalWords = new ArrayList<String>();
+
         //print whole contents of a file to an input string
         while (in.hasNextLine())
         {
@@ -39,11 +41,10 @@ public class Main {
         //print out the final words and their count
         for (int i = 0; i < finalWords.size(); i++)
         {
-
             //since it's sorted can check for duplicates and only print unique words
             if ((i+1) < finalWords.size() && !finalWords.get(i).equals(finalWords.get(i+1)))
             {
-                outFile.println(finalWords.get(i) + finalWords.get(i).Gaps() + counter);
+                outFile.println(finalWords.get(i) + Gaps(finalWords.get(i)) + counter);
                 //some method that decides amount of gaps to print instead of single  " ";
                 counter = 1;
             }
@@ -52,18 +53,20 @@ public class Main {
                 //increment counter if a word is a duplicate of previous one
                 counter += 1;
             }
-
         }
         outFile.close();
     }
 
-    public String Gaps(String word)
+    //method that will calculate amount of gaps to print between word and counter
+    public static String Gaps(String word)
     {
-        final int MAX_SIZE = 30;
+        final int MAX_SIZE = 20;
         String spaces= "";
-        while(word.length < MAX_SIZE)
+        int difference = word.length() - MAX_SIZE;
+        while(difference < MAX_SIZE)
         {
             spaces += " ";
+            difference += 1;
         }
         return spaces;
     }
