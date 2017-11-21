@@ -35,13 +35,17 @@ public class Main {
 
         int counter = 1;
         //print out the final words and their count
-        for (int i = 0; i < finalWords.size(); i++)
+        for (int i = 0; i <= finalWords.size(); i++)
         {
             //since it's sorted can check for duplicates and only print unique words
-            if ((i+1) < finalWords.size() && !finalWords.get(i).equals(finalWords.get(i+1)))
+            if ((i+1) < finalWords.size()  && !finalWords.get(i).equals(finalWords.get(i+1)))
             {
-                outFile.println(finalWords.get(i) + Gaps(finalWords.get(i)) + counter);
+                out.println(finalWords.get(i) + Gaps(finalWords.get(i)) + counter);
                 counter = 1;
+            }
+            else if( (i+1) > finalWords.size())
+            {
+                out.println(finalWords.get(i-1) + Gaps(finalWords.get(i-1)) + counter);
             }
             else
             {
